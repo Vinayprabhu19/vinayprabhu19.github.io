@@ -798,7 +798,7 @@ html,body{
 	left: 600px;
 	z-index: 1;
 }
-#college{
+#college1{
 	width: 300px;
 	height: 150px;
 	left: 600px;
@@ -809,11 +809,27 @@ html,body{
 	border-radius: 30px;
 	border: #fff solid 3px;
 }
-#college h1,h2{
+#college1 h1,h2{
 	margin-top: 20px;
 	text-align: center;
 }
-#aggregate{
+
+#college2{
+	width: 300px;
+	height: 150px;
+	left: 900px;
+	position: absolute;
+	background: blue;
+	color: white;
+	bottom: 350px;
+	border-radius: 30px;
+	border: #fff solid 3px;
+}
+#college2 h1,h2{
+	margin-top: 20px;
+	text-align: center;
+}
+#aggregate1{
 	width: 100px;
 	height: 75px;
 	left: 675px;
@@ -825,7 +841,24 @@ html,body{
 	position: absolute;
 	z-index: 101;
 }
-#aggregate h1{
+#aggregate2{
+	width: 100px;
+	height: 75px;
+	left: 875px;
+	bottom: 300px;
+	background: darkgreen;
+	color: white;
+	border-radius: 25px;
+	border: #fff dashed 3px;
+	position: absolute;
+	z-index: 101;
+}
+#aggregate1 h1{
+	text-align: center;
+	font-size: 20px;
+	margin-top: 20px;
+}
+#aggregate2 h1{
 	text-align: center;
 	font-size: 20px;
 	margin-top: 20px;
