@@ -8,9 +8,11 @@ $(document).ready(function(){
 })
 document.addEventListener('swiped-left', function(e) {
     moveLeft(); // the element that was swiped
+	moveLeft(); 
 });
 document.addEventListener('swiped-right', function(e) {
     moveRight(); // the element that was swiped
+	moveRight(); 
 });
 var xDown = null;                                                        
 var yDown = null;
