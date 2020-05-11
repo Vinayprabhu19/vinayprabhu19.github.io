@@ -785,7 +785,7 @@ html,body{
 	width: 600px;
 	height: 425px;
 	background: url("../img/landscape.png");
-	left: 0px;
+	left: -150px;
 	bottom: 200px;
 	position: absolute;
 }
@@ -798,6 +798,22 @@ html,body{
 	left: 600px;
 	z-index: 1;
 }
+#work1{
+	width: 300px;
+	height: 150px;
+	left: 300px;
+	position: absolute;
+	background: blue;
+	color: white;
+	bottom: 350px;
+	border-radius: 30px;
+	border: #fff solid 3px;
+}
+#work1 h1,h2{
+	margin-top: 20px;
+	text-align: center;
+}
+
 #college1{
 	width: 300px;
 	height: 150px;
@@ -817,7 +833,7 @@ html,body{
 #college2{
 	width: 300px;
 	height: 150px;
-	left: 900px;
+	left: 975px;
 	position: absolute;
 	background: blue;
 	color: white;
@@ -844,7 +860,7 @@ html,body{
 #aggregate2{
 	width: 100px;
 	height: 75px;
-	left: 875px;
+	left: 1075px;
 	bottom: 300px;
 	background: darkgreen;
 	color: white;
