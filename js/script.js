@@ -6,10 +6,10 @@ $(document).ready(function(){
 	//check1();
 	moveAround();
 })
-document.addEventListener('swiped-right', function(e) {
+document.addEventListener('swiped-left', function(e) {
     moveLeft(); // the element that was swiped
 });
-document.addEventListener('swiped-left', function(e) {
+document.addEventListener('swiped-right', function(e) {
     moveRight(); // the element that was swiped
 });
 var xDown = null;                                                        
