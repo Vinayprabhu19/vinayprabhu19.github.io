@@ -9,13 +9,17 @@ var finish=false;
 $(document).ready(function () {
 	// $("#loading-screen").fadeOut(3500);
 	//check1();
-	$('.cloud-one').css({ "top": "400px" });
-	$('.cloud-two').css({ "top": "600px" });
-	
+	if(screenHeight>screenWidth){
+		$('.cloud-one').css({ "top": "250px" });
+		$('.cloud-two').css({ "top": "600px" });
+	}
+
+
 	if(screenWidth<1300){
-		
-		$('#banner').css({ "left": "100px","bottom":(screenHeight/2+50)+"px"});
-		$('#name').css({ "left": "200px","bottom":(screenHeight/2-150)+"px" });
+		$('#banner').removeProp('bottom');
+		$('#name').removeProp('bottom');
+		$('#banner').css({ "left": "100px","top":"-270px"});
+		$('#name').css({ "left": "200px","top":"-200px" });
 	}
 	moveAround();
 	moveRight();

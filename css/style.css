@@ -75,7 +75,7 @@ html,body{
 	left: 50%;
 	position: absolute;
 	z-index:9999;
-	bottom: 72px; 
+	bottom: 72px;
 	background: url("../img/vinay/v1.png");
 }
 .vinay2{
@@ -84,7 +84,7 @@ html,body{
 	left: 50%;
 	position: absolute;
 	z-index:9999;
-	bottom: 72px; 
+	bottom: 72px;
 	background: url("../img/vinay/v2.png");
 }
 .vinay3{
@@ -93,7 +93,7 @@ html,body{
 	left: 50%;
 	position: absolute;
 	z-index:9999;
-	bottom: 72px; 
+	bottom: 72px;
 	background: url("../img/vinay/v3.png");
 }
 .vinay4{
@@ -102,7 +102,7 @@ html,body{
 	left: 50%;
 	position: absolute;
 	z-index:9999;
-	bottom: 72px; 
+	bottom: 72px;
 	background: url("../img/vinay/v4.png");
 }
 .vinay5{
@@ -111,7 +111,7 @@ html,body{
 	left: 50%;
 	position: absolute;
 	z-index:9999;
-	bottom: 72px; 
+	bottom: 72px;
 	background: url("../img/vinay/v5.png");
 }
 .vinay6{
@@ -120,7 +120,7 @@ html,body{
 	left: 50%;
 	position: absolute;
 	z-index:9999;
-	bottom: 72px; 
+	bottom: 72px;
 	background: url("../img/vinay/v6.png");
 }
 .vinay7{
@@ -129,7 +129,7 @@ html,body{
 	left: 50%;
 	position: absolute;
 	z-index:9999;
-	bottom: 72px; 
+	bottom: 72px;
 	background: url("../img/vinay/v7.png");
 }
 .vinay8{
@@ -138,7 +138,7 @@ html,body{
 	left: 50%;
 	position: absolute;
 	z-index:9999;
-	bottom: 72px; 
+	bottom: 72px;
 	background: url("../img/vinay/v8.png");
 }
 .vinay9{
@@ -147,7 +147,7 @@ html,body{
 	left: 50%;
 	position: absolute;
 	z-index:9999;
-	bottom: 72px; 
+	bottom: 72px;
 	background: url("../img/vinay/v9.png");
 }
 .vinay10{
@@ -156,7 +156,7 @@ html,body{
 	left: 50%;
 	position: absolute;
 	z-index:9999;
-	bottom: 72px; 
+	bottom: 72px;
 	background: url("../img/vinay/v10.png");
 }
 .vinaywr{
@@ -165,7 +165,7 @@ html,body{
 	left: 50%;
 	position: absolute;
 	z-index:9999;
-	bottom: 72px; 
+	bottom: 72px;
 	background: url("../img/vinay/win-r.png");
 }
 #scene1-container{
@@ -265,21 +265,21 @@ html,body{
 	z-index: 1000;
 }
 #ground1{
-	width: 2800px;
+	width: 3000px;
 	height: 20px;
 	bottom: 80px;
 	background: url("../img/ground1.png");
 	position: absolute;
-	left: 0;
+	left: -200px;
 	z-index: 101;
 }
 #tiles1{
 	height:90px;
-	width: 2800px;
+	width: 3000px;
 	background: url("../img/tile1.png");
 	position: absolute;
 	bottom: 0;
-	left: 0;
+	left: -200px;
 	z-index: 100;
 }
 #ground2{
@@ -457,7 +457,7 @@ html,body{
 }
 #cloud4{
 	background: url("../img/cloud1.png");
-	left: 1400px;
+	left: 1600px;
 	bottom: 350px;
 }
 #cloud5{
@@ -635,20 +635,20 @@ html,body{
 	z-index: 11;
 }
 #vidhan-Soudha{
-	left:300px;
-	width: 540px;
-	height: 294px;
+	left:212px;
+	width: 823px;
+	height: 428px;
 	position: absolute;
 	bottom: 50px;
-	background: url("../img/vidhan-Soudha.png");
+	content: url("../img/vidhan-Soudha.png");
 }
 #lived-in{
 	width: 131px;
 	height: 180px;
 	background: url("../img/location.png");
 	position: absolute;
-	left:500px;
-	bottom: 380px;
+	left:558px;
+	bottom: 647px;
 }
 
 #wall{
@@ -801,7 +801,7 @@ html,body{
 #work1{
 	width: 300px;
 	height: 150px;
-	left: 300px;
+	left: 280px;
 	position: absolute;
 	background: blue;
 	color: white;
@@ -812,12 +812,13 @@ html,body{
 #work1 h1,h2{
 	margin-top: 20px;
 	text-align: center;
+	font-family: 'font4';
 }
 
 #college1{
 	width: 300px;
 	height: 150px;
-	left: 600px;
+	left: 630px;
 	position: absolute;
 	background: blue;
 	color: white;
@@ -828,6 +829,7 @@ html,body{
 #college1 h1,h2{
 	margin-top: 20px;
 	text-align: center;
+	font-family: 'font4';
 }
 
 #college2{
@@ -844,40 +846,46 @@ html,body{
 #college2 h1,h2{
 	margin-top: 20px;
 	text-align: center;
+	font-family: 'font4';
 }
 #aggregate1{
 	width: 100px;
 	height: 75px;
 	left: 675px;
-	bottom: 300px;
+	bottom: 270px;
 	background: darkgreen;
 	color: white;
 	border-radius: 25px;
 	border: #fff dashed 3px;
 	position: absolute;
 	z-index: 101;
+
+	padding: 0 5px 5px 5px ;
 }
 #aggregate2{
 	width: 100px;
 	height: 75px;
 	left: 1075px;
-	bottom: 300px;
+	bottom: 270px;
 	background: darkgreen;
 	color: white;
 	border-radius: 25px;
 	border: #fff dashed 3px;
 	position: absolute;
 	z-index: 101;
+	padding: 0 5px 5px 5px ;
 }
 #aggregate1 h1{
 	text-align: center;
 	font-size: 20px;
 	margin-top: 20px;
+	font-family: cursive;
 }
 #aggregate2 h1{
 	text-align: center;
 	font-size: 20px;
 	margin-top: 20px;
+	font-family: cursive;
 }
 #quiditch{
 	position: absolute;
@@ -887,6 +895,9 @@ html,body{
 	width: 199px;
 	height: 300px;
 	z-index: 1;
+}
+h2{
+	font-weight: normal;
 }
 #sports{
 	width: 150px;
