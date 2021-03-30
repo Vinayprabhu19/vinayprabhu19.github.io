@@ -227,6 +227,61 @@ html,body{
 	position: absolute;
 }
 
+#finish{
+	left: 19000px;
+	width: 1000px;
+	height: 5000px;
+	bottom: 0;
+	z-index: 999;
+	font-size: 19px;
+	font-family: font1;
+	position: absolute;
+}
+
+#ground6{
+	width: 3000px;
+	height: 20px;
+	bottom: 80px;
+	background: url("../img/ground1.png");
+	position: absolute;
+	left: 19000px;
+	z-index: 101;
+}
+#tiles6{
+	height:90px;
+	width: 3000px;
+	background: url("../img/tile1.png");
+	position: absolute;
+	bottom: 0;
+	left: 19000px;
+	z-index: 100;
+}
+
+#contactGmail{
+	width: 50px;
+	margin: 0 auto;
+	content: url("../img/gmail.png");
+}
+
+#contactLinkedIn{
+	width: 50px;
+	margin: 0 auto;
+	content: url("../img/linkedin.png");
+}
+#winning-banner{
+	left: 50%;
+	position: absolute;
+	bottom: 550px;
+	color:white;
+	font-size: 50pt;
+	font-weight: bold;
+	text-align: center;
+	z-index: 9999;
+}
+#contactMe{
+	font-size: 20pt;
+}
+
 #banner{
 	width: 500px;
 	height: 82px;
@@ -786,7 +841,7 @@ html,body{
 	height: 425px;
 	background: url("../img/landscape.png");
 	left: -150px;
-	bottom: 200px;
+	bottom: 600px;
 	position: absolute;
 }
 #castle{
@@ -805,7 +860,7 @@ html,body{
 	position: absolute;
 	background: blue;
 	color: white;
-	bottom: 350px;
+	bottom: 2000px;
 	border-radius: 30px;
 	border: #fff solid 3px;
 }
@@ -822,7 +877,7 @@ html,body{
 	position: absolute;
 	background: blue;
 	color: white;
-	bottom: 350px;
+	bottom: 2000px;
 	border-radius: 30px;
 	border: #fff solid 3px;
 }
@@ -839,7 +894,7 @@ html,body{
 	position: absolute;
 	background: blue;
 	color: white;
-	bottom: 350px;
+	bottom: 2000px;
 	border-radius: 30px;
 	border: #fff solid 3px;
 }
@@ -1261,12 +1316,8 @@ h2{
 	border: #fff dashed 5px;
 	border-radius: 25px;
 }
-#finish{
-	width: 990px;
-	height: 772px;
-	left: 5400px;
-	bottom: -60px;
-	position: absolute;
-	background: url("../img/finish.png");
-}
+
+
+
+
 
