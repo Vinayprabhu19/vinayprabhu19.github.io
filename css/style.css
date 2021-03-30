@@ -695,7 +695,7 @@ html,body{
 	height: 428px;
 	position: absolute;
 	bottom: 50px;
-	content: url("../img/vidhan-Soudha.png");
+	content: url("../img/vidhan-soudha.png");
 }
 #lived-in{
 	width: 131px;
@@ -839,7 +839,7 @@ html,body{
 #landscape{
 	width: 600px;
 	height: 425px;
-	background: url("../img/landscape.png");
+	background: url("../img/Landscape.png");
 	left: -150px;
 	bottom: 600px;
 	position: absolute;
