@@ -10,7 +10,7 @@ html,body{
 }
 #loading-screen{
 	width: 100vw;
-	height: 100vh;
+	height: 100%;
 	background: url("../img/background.jpg");
 	z-index: 10000;
 	left: 0;
@@ -1258,3 +1258,4 @@ html,body{
 	position: absolute;
 	background: url("../img/finish.png");
 }
+

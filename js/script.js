@@ -2,11 +2,21 @@ var pos = 0;
 var h = 0;
 var vb = 0;
 var screenWidth = $(window).width();
-var factor=screenWidth/1920;
+var screenHeight=$(window).height();
+var factorW=screenWidth/1920;
+var factorH=screenWidth/1080;
 var finish=false;
 $(document).ready(function () {
-	$("#loading-screen").fadeOut(500);
+	// $("#loading-screen").fadeOut(3500);
 	//check1();
+	$('.cloud-one').css({ "top": "400px" });
+	$('.cloud-two').css({ "top": "600px" });
+	
+	if(screenWidth<1300){
+		
+		$('#banner').css({ "left": "100px","bottom":(screenHeight/2+50)+"px"});
+		$('#name').css({ "left": "200px","bottom":(screenHeight/2-150)+"px" });
+	}
 	moveAround();
 	moveRight();
 	moveLeft();
@@ -39,25 +49,25 @@ function moveAround() {
 }
 function moveLeft() {
 	if (pos > 0 && !finish) {
-		pos -= 100*factor;
-		$('#scene1-container').css({ "left": "+="+100*factor });
-		$('#scene1-bcontainer').css({ "left": "+="+45*factor });
+		pos -= 100*factorW;
+		$('#scene1-container').css({ "left": "+="+100*factorW });
+		$('#scene1-bcontainer').css({ "left": "+="+45*factorW });
 		changeVinayPosLeft();
-		$('#level1').css({ "left": "+="+100*factor });
-		$("#ground-container").css({ "left": "+="+100*factor });
-		$('#level1-p2').css({ "left": "+="+100*factor });
-		$("#level2").css({ "left": "+="+100*factor });
-		$("#level3").css({ "left": "+="+100*factor });
-		$("#level4").css({ "left": "+="+100*factor });
-		if (pos > 2300*factor && pos <= 3900*factor) {
-			$('#train').css({ "left": "-="+100*factor });
-			if (pos > 3100*factor) {
-				$("#car").css({ "left": "-="+140*factor });
+		$('#level1').css({ "left": "+="+100*factorW });
+		$("#ground-container").css({ "left": "+="+100*factorW });
+		$('#level1-p2').css({ "left": "+="+100*factorW });
+		$("#level2").css({ "left": "+="+100*factorW });
+		$("#level3").css({ "left": "+="+100*factorW });
+		$("#level4").css({ "left": "+="+100*factorW });
+		if (pos > 2300*factorW && pos <= 3900*factorW) {
+			$('#train').css({ "left": "-="+100*factorW });
+			if (pos > 3100*factorW) {
+				$("#car").css({ "left": "-="+140*factorW });
 				$("#car").css({ "bottom": "+=76"});
 			}
 		}
 		var offset = $("#level2").offset();
-		if (offset.left >= 1000*factor && offset.left<=1000*factor+75*factor) {
+		if (offset.left >= 1000*factorW && offset.left<=1000*factorW+75*factorW) {
 			$('#container').animate({
 				scrollTop: offset.top - 1500,
 				scrollLeft: 0
@@ -70,7 +80,7 @@ function moveLeft() {
 			moveLeft();
 		}
 		var offset = $("#level3").offset();
-		if (offset.left >= 1000*factor && offset.left<=1000*factor+75*factor) {
+		if (offset.left >= 1000*factorW && offset.left<=1000*factorW+75*factorW) {
 			$('#container').animate({
 				scrollTop: offset.top + 1500,
 				scrollLeft: 0
@@ -83,7 +93,7 @@ function moveLeft() {
 			moveLeft();
 		}
 		var offset = $("#level4").offset();
-		if (offset.left <= 1100*factor) {
+		if (offset.left <= 1100*factorW) {
 			//console.log(offset.left+"Hagridleft");
 			$("#hagrid-bike").removeClass().addClass("hagrid-bike1");
 			//console.log("Hagrid");
@@ -97,27 +107,27 @@ function moveLeft() {
 	}
 }
 function moveRight() {
-	pos += 100*factor;
+	pos += 100*factorW;
 	var c = $("#finish").offset();
-	if (c.left >= 300*factor) {
-		$('#scene1-container').css({ "left": "-="+100*factor });
-		$('#scene1-bcontainer').css({ "left": "-="+45*factor });
+	if (c.left >= 300*factorW) {
+		$('#scene1-container').css({ "left": "-="+100*factorW });
+		$('#scene1-bcontainer').css({ "left": "-="+45*factorW });
 		changeVinayPosRight();
-		$('#level1').css({ "left": "-="+100*factor });
-		$("#ground-container").css({ "left": "-="+100*factor });
-		$('#level1-p2').css({ "left": "-="+100*factor });
-		$("#level2").css({ "left": "-="+100*factor });
-		$("#level3").css({ "left": "-="+100*factor });
-		$("#level4").css({ "left": "-="+100*factor });
+		$('#level1').css({ "left": "-="+100*factorW });
+		$("#ground-container").css({ "left": "-="+100*factorW });
+		$('#level1-p2').css({ "left": "-="+100*factorW });
+		$("#level2").css({ "left": "-="+100*factorW });
+		$("#level3").css({ "left": "-="+100*factorW });
+		$("#level4").css({ "left": "-="+100*factorW });
 		if (pos > 2400 && pos <= 3900) {
-			$('#train').css({ "left": "+="+100*factor });
+			$('#train').css({ "left": "+="+100*factorW });
 			if (pos > 3100) {
-				$("#car").css({ "left": "+="+140*factor });
+				$("#car").css({ "left": "+="+140*factorW });
 				$("#car").css({ "bottom": "-=76"});
 			}
 		}
 		var offset = $("#level2").offset();
-		if (offset.left >= 1000*factor && offset.left<=1000*factor+75*factor) {
+		if (offset.left >= 1000*factorW && offset.left<=1000*factorW+75*factorW) {
 			$('#container').animate({
 				scrollTop: offset.top + 1500,
 				scrollLeft: 0
@@ -130,7 +140,7 @@ function moveRight() {
 			moveRight();
 		}
 		var offset = $("#level3").offset();
-		if (offset.left >= 1000*factor && offset.left<=1000*factor+75*factor){
+		if (offset.left >= 1000*factorW && offset.left<=1000*factorW+75*factorW){
 			$('#container').animate({
 				scrollTop: offset.top - 1500,
 				scrollLeft: 0
@@ -143,16 +153,16 @@ function moveRight() {
 			moveRight();
 		}
 		var offset = $("#level4").offset();
-		if (offset.left >= 1000*factor && offset.left<=1000*factor+75*factor) {
+		if (offset.left >= 1000*factorW && offset.left<=1000*factorW+75*factorW) {
 			$("#vinay").hide();
 			$("#hagrid-bike").removeClass().addClass("hagrid-bike2");
-			$("#hagrid-bike").css({ "bottom": "+="+300*factor });
-			$("#hagrid-bike").css({ "left": "-="+400*factor });
+			$("#hagrid-bike").css({ "bottom": "+="+300*factorW });
+			$("#hagrid-bike").css({ "left": "-="+400*factorW });
 		}
-		if (offset.left < 1100*factor) {
-			$("#hagrid-bike").css({ "left": "+="+100*factor });
+		if (offset.left < 1100*factorW) {
+			$("#hagrid-bike").css({ "left": "+="+100*factorW });
 		}
-		if (c.left >= 900*factor && c.left<=900*factor+75*factor) {
+		if (c.left >= 900*factorW && c.left<=900*factorW+75*factorW) {
 			$("#hagrid-bike").removeClass().addClass("hagrid-bike1");
 			//console.log("Hagrid");
 			$("#hagrid-bike").css({ "bottom": "0px" });
@@ -160,7 +170,7 @@ function moveRight() {
 			$("#vinay").show();
 			$("#vinay").css({ "bottom": "150px" });
 		}
-		if (c.left <= 500*factor && finish==false) {
+		if (c.left <= 500*factorW && finish==false) {
 			$("#vinay").css({ "bottom": "200px" });
 			$("#vinay").removeClass().addClass("vinaywr");
 			$("#vinay").css({ "bottom": "200px" });
@@ -233,10 +243,10 @@ function check1() {
 	if (offset.left == 1100) {
 		$("#vinay").hide();
 		$("#hagrid-bike").removeClass().addClass("hagrid-bike2");
-		$("#hagrid-bike").css({ "bottom": "+="+300*factor });
-		$("#hagrid-bike").css({ "left": "-="+400*factor });
+		$("#hagrid-bike").css({ "bottom": "+="+300*factorW });
+		$("#hagrid-bike").css({ "left": "-="+400*factorW });
 	}
 	if (offset.left < 1100) {
-		$("#hagrid-bike").css({ "left": "+="+100*factor });
+		$("#hagrid-bike").css({ "left": "+="+100*factorW });
 	}
 }
