@@ -288,9 +288,8 @@ html,body{
 	position: absolute;
 	bottom:422px;
 	left: 710px;
-	background-repeat: no-repeat;
 	z-index: 4;
-	background: url("../img/resumebanner.png");
+	content: url("../img/resumebanner.png");
 }
 #name{
 	width: 300px;
