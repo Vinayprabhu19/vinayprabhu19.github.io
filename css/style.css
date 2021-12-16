@@ -282,7 +282,7 @@ html,body{
 	font-size: 20pt;
 }
 
-#banner{
+#banner-text{
 	width: 500px;
 	height: 82px;
 	position: absolute;
@@ -290,7 +290,7 @@ html,body{
 	left: 710px;
 	background-repeat: no-repeat;
 	z-index: 4;
-	background: url("../img/resumebanner.png");
+	font-family: 'font4';
 }
 #name{
 	width: 300px;

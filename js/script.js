@@ -29,11 +29,9 @@ $(document).ready(function () {
 document.addEventListener('swiped-left', function (e) {
 
 	moveRight(); // the element that was swiped
-	moveRight();
 });
 document.addEventListener('swiped-right', function (e) {
 	moveLeft(); // the element that was swiped
-	moveLeft();
 });
 var xDown = null;
 var yDown = null;
