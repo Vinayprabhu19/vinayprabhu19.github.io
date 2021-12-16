@@ -3,8 +3,8 @@ var h = 0;
 var vb = 0;
 var screenWidth = $(window).width();
 var screenHeight = $(window).height();
-var factorW = screenWidth / 1920;
-var factorH = screenWidth / 1080;
+var factorW = (screenWidth / 1920);
+var factorH = (screenWidth / 1080);
 var finish = false;
 var instAnimation=false;
 $(document).ready(function () {
@@ -26,12 +26,19 @@ $(document).ready(function () {
 	moveRight();
 	moveLeft();
 })
+
+var lastScrollTop = 0;
+
 document.addEventListener('swiped-left', function (e) {
 
-	moveRight(); // the element that was swiped
+	moveRight();
+				moveRight();
+				moveRight();
 });
 document.addEventListener('swiped-right', function (e) {
-	moveLeft(); // the element that was swiped
+		moveLeft();
+				moveLeft();
+				moveLeft();
 });
 var xDown = null;
 var yDown = null;
@@ -42,8 +49,12 @@ function moveAround() {
 		switch (e.which) {
 			case 37:
 				moveLeft();
+				moveLeft();
+				moveLeft();
 				break;
 			case 39:
+				moveRight();
+				moveRight();
 				moveRight();
 				break;
 		}
