@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinay Prabhu — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15181e;
+    --sub:#5b626e;
+    --accent:#0d7361;
+    --accent-deep:#0a5247;
+    --rule:#e3e6ea;
+    --rule-soft:#eef0f3;
+    --paper:#ffffff;
+    --maxw:820px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:#f3f4f6;
+    line-height:1.5;
+    font-size:14px;
+    padding:32px 16px;
+  }
+
+  .toolbar{
+    max-width:var(--maxw);margin:0 auto 16px;
+    display:flex;justify-content:flex-end;gap:8px;
+  }
+  .btn{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;
+    border:1px solid var(--accent);color:var(--accent);background:#fff;
+    padding:8px 16px;border-radius:7px;cursor:pointer;letter-spacing:.01em;
+    transition:all .15s ease;
+  }
+  .btn:hover{background:var(--accent);color:#fff}
+
+  .page{
+    max-width:var(--maxw);margin:0 auto;background:var(--paper);
+    padding:48px 52px 44px;border-radius:6px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06),0 12px 40px -12px rgba(20,30,40,.18);
+  }
+
+  header{border-bottom:2px solid var(--ink);padding-bottom:18px}
+  .name{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:38px;line-height:1.02;letter-spacing:-.018em;
+  }
+  .role{
+    font-family:'Space Grotesk',sans-serif;font-weight:500;
+    font-size:15px;color:var(--accent);margin-top:5px;letter-spacing:.01em;
+  }
+  .contact{
+    margin-top:13px;display:flex;flex-wrap:wrap;gap:6px 18px;
+    font-size:12.5px;color:var(--sub);
+  }
+  .contact a{color:var(--sub);text-decoration:none}
+  .contact a:hover{color:var(--accent)}
+  .contact span{display:inline-flex;align-items:center;gap:5px}
+  .dot{color:var(--rule)}
+
+  section{margin-top:24px}
+  .sec-head{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);
+    padding-bottom:6px;margin-bottom:14px;
+    border-bottom:1px solid var(--rule);
+    display:flex;align-items:center;gap:9px;
+  }
+  .sec-head::before{
+    content:"";width:7px;height:7px;background:var(--accent);
+    border-radius:1px;transform:rotate(45deg);flex:none;
+  }
+
+  .summary{font-size:13.5px;color:#2c313a;max-width:64ch}
+
+  .job{margin-bottom:20px}
+  .job:last-child{margin-bottom:0}
+  .job-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .job-org{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16.5px;letter-spacing:-.01em}
+  .job-title{font-weight:600;color:var(--accent-deep);font-size:13.5px}
+  .sep{color:var(--sub);font-weight:400}
+  .job-dates{
+    font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums;
+    white-space:nowrap;font-weight:500;
+  }
+  .job-tech{font-size:11.5px;color:var(--sub);margin:4px 0 9px;font-style:italic}
+
+  .stream{margin:9px 0 0}
+  .stream-name{font-weight:600;font-size:13px;color:var(--ink)}
+  ul{list-style:none;margin:4px 0 0;padding:0}
+  li{
+    position:relative;padding-left:16px;font-size:13px;color:#363b44;
+    margin-bottom:3px;
+  }
+  li::before{
+    content:"";position:absolute;left:2px;top:8px;
+    width:4px;height:4px;border-radius:50%;background:var(--accent);
+  }
+  .metric{color:var(--accent-deep);font-weight:600}
+
+  .featured{
+    border:1px solid var(--rule);border-left:3px solid var(--accent);
+    border-radius:6px;padding:15px 18px;background:linear-gradient(180deg,#f6fbf9 0%,#fff 70%);
+  }
+  .featured .job-org{font-size:16px}
+  .badge{
+    font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--accent);
+    padding:2px 8px;border-radius:20px;vertical-align:middle;margin-left:8px;
+  }
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px}
+  .mini h4{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;margin-bottom:2px}
+  .mini p{font-size:12px;color:var(--sub);line-height:1.45}
+  .mini a{color:var(--accent);text-decoration:none}
+
+  .skills{display:grid;grid-template-columns:auto 1fr;gap:7px 16px;font-size:12.5px}
+  .skill-cat{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--accent-deep);white-space:nowrap}
+  .skill-val{color:#363b44}
+
+  .edu-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+  .edu-row:last-child{margin-bottom:0}
+  .edu-school{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--ink);letter-spacing:-.005em}
+  .edu-deg{font-size:12.5px;color:var(--sub)}
+  .edu-meta{font-size:12px;color:var(--sub);text-align:right;font-variant-numeric:tabular-nums}
+
+  @media print{
+    body{background:#fff;padding:0;font-size:11pt}
+    .toolbar{display:none}
+    .page{box-shadow:none;border-radius:0;max-width:100%;padding:0;margin:0}
+    section{margin-top:16px}
+    .featured{background:#fff}
+    a{color:var(--ink)!important}
+    @page{margin:14mm 15mm}
+  }
+  @media (max-width:560px){
+    .page{padding:30px 22px}
+    .name{font-size:30px}
+    .grid2{grid-template-columns:1fr}
+    .skills{grid-template-columns:1fr}
+    .skill-cat{margin-top:6px}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button class="btn" onclick="window.print()">Download / Print PDF</button>
+</div>
+
+<div class="page">
+
+  <header>
+    <div class="name">Vinay Prabhu</div>
+    <div class="role">Software Engineer · Full-Stack Product Builder</div>
+    <div class="contact">
+      <span>Bengaluru, India</span>
+      <span class="dot">·</span>
+      <span><a href="tel:+919742440352">+91 97424 40352</a></span>
+      <span class="dot">·</span>
+      <span><a href="mailto:vinayprabhu19@gmail.com">vinayprabhu19@gmail.com</a></span>
+      <span class="dot">·</span>
+      <span><a href="https://vinayprabhu19.github.io">vinayprabhu19.github.io</a></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">Summary</div>
+    <p class="summary">
+      Software Engineer with 7+ years building enterprise and consumer products end-to-end,
+      from Dynamics 365 / Power Platform modules at Microsoft to a self-built Go-and-React
+      marketplace serving a national community. Comfortable owning the full journey: architecture,
+      development, DevOps, and AI-assisted delivery using prompt engineering and tools like Claude.
+    </p>
+  </section>
+
+  <section>
+    <div class="sec-head">Experience</div>
+
+    <div class="job">
+      <div class="job-top">
+        <div>
+          <span class="job-org">Microsoft Corporation</span><span class="sep">, </span><span class="job-title">Software Engineer 2 (L62)</span>
+        </div>
+        <div class="job-dates">2022 – Present</div>
+      </div>
+      <div class="job-tech">Dynamics 365 · X++ · Dataverse · Model-Driven Apps · PCF · CAPI Framework · Power Platform · Azure DevOps</div>
+
+      <div class="stream">
+        <div class="stream-name">Business Performance Planning (BPP)</div>
+        <ul>
+          <li>Build planning visuals and a Model-Driven App on Dynamics 365, delivering interactive performance-planning experiences for finance and operations users.</li>
+        </ul>
+      </div>
+
+      <div class="stream">
+        <div class="stream-name">Recruiting App, HR Module</div>
+        <ul>
+          <li>Designed and built the recruitment application from scratch in Dataverse, owning the full presentation layer and PCF controls.</li>
+          <li>Implemented Copilot features including a Job Description Generator and a Bulk Resume Parser using the CAPI framework to automate candidate processing.</li>
+          <li>Integrated Microsoft Tasks to streamline new-hire onboarding workflows.</li>
+        </ul>
+      </div>
+
+      <div class="stream">
+        <div class="stream-name">Global Address Book &amp; Platform</div>
+        <ul>
+          <li>Developed and extended functionality using the X++ framework, <span class="metric">reducing bugs</span> and accelerating release deliverables.</li>
+          <li>Configured and maintained Azure DevOps pipelines, repositories, and CI/CD for the team's apps.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <div>
+          <span class="job-org">SAP Labs</span><span class="sep">, </span><span class="job-title">Associate Software Engineer</span>
+        </div>
+        <div class="job-dates">Aug 2018 – May 2022</div>
+      </div>
+      <div class="job-tech">Java · Spring Boot · SAP UI5 · S/4 HANA · PostgreSQL · Cloud Foundry</div>
+      <ul>
+        <li><b>Sourcing Simulation &amp; Optimization:</b> Built persona-based procurement apps (SAP UI5) and REST microservices (Spring Boot) helping suppliers secure best material rates.</li>
+        <li><b>Test Data Engineering:</b> Automated tunnelled connections across systems, <span class="metric">cutting manual effort by 60%</span>; built a Test Data Container integrated with S/4 HANA Cloud.</li>
+        <li><b>Camouflage:</b> Developed a UI image-comparison tool (Java, Python, SAP UI5) with SharePoint API integration, <span class="metric">improving performance by 80%</span>.</li>
+        <li><b>Leave Tracking Tool:</b> Designed, built, and deployed via Jenkins with persona-based roles and security.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">Education</div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-school">BITS Pilani</div>
+        <div class="edu-deg">M.Tech, Software Engineering</div>
+      </div>
+      <div class="edu-meta">2018 – 2020<br>8.35 / 10</div>
+    </div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-school">RNS Institute of Technology (VTU)</div>
+        <div class="edu-deg">B.E., Computer Science</div>
+      </div>
+      <div class="edu-meta">2014 – 2018<br>80%</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">Featured Personal Project</div>
+    <div class="featured">
+      <div class="job-top">
+        <div>
+          <span class="job-org">NearMint</span><span class="badge">Founder · Solo build</span>
+        </div>
+        <div class="job-dates">2026 – Present</div>
+      </div>
+      <div class="job-tech">Go · React · Full-stack · AI-assisted development (Claude)</div>
+      <ul>
+        <li>Single-handedly designed, built, and shipped NearMint, one of India's largest trading-card-game (TCG) marketplaces, owning the complete journey from architecture to launch.</li>
+        <li>Built the backend in <b>Go</b> and the frontend in <b>React</b>, covering catalog, listings, search, and transactions.</li>
+        <li>Used AI-assisted development (Claude / Cowork) to accelerate delivery as a solo founder, combining prompt engineering with hands-on full-stack engineering.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">Additional Projects</div>
+    <div class="grid2">
+      <div class="mini">
+        <h4>PopcornTales</h4>
+        <p>Movie-review platform built from scratch with Java + ReactJS on AWS Lambda, hosted on AWS &amp; Firebase. <a href="https://www.popcorntales.com">popcorntales.com</a></p>
+      </div>
+      <div class="mini">
+        <h4>Foodator</h4>
+        <p>Food-recognition Android app using TensorFlow DNNs (93% accuracy) integrated with Zomato APIs to locate nearby restaurants.</p>
+      </div>
+      <div class="mini">
+        <h4>GoGully</h4>
+        <p>Spring Boot + ReactJS app to manage gully-cricket teams, scorecards, and player performance.</p>
+      </div>
+      <div class="mini">
+        <h4>HealthByte (Sleep Apnea)</h4>
+        <p>Freelance build of AWS Lambda APIs in Java for a health-monitoring application.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">Skills</div>
+    <div class="skills">
+      <div class="skill-cat">Languages</div>
+      <div class="skill-val">Go · Java / J2EE · Python · JavaScript / TypeScript · X++</div>
+      <div class="skill-cat">Frameworks</div>
+      <div class="skill-val">Spring Boot · ReactJS · AWS Lambda · Power Platform · SAP UI5</div>
+      <div class="skill-cat">AI &amp; Tooling</div>
+      <div class="skill-val">Prompt Engineering · Claude-assisted development · CAPI · TensorFlow</div>
+      <div class="skill-cat">DevOps &amp; Tools</div>
+      <div class="skill-val">Azure DevOps · GitHub · Jenkins · Docker · Postman · SonarQube</div>
+      <div class="skill-cat">Cloud</div>
+      <div class="skill-val">Azure · AWS · Cloud Foundry · Google Firebase</div>
+      <div class="skill-cat">Databases</div>
+      <div class="skill-val">PostgreSQL · HANA · MongoDB · DynamoDB · MySQL · Dataverse</div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinay Prabhu · The Magical Resume — Storyboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --void:        #07070f;
+  --gold:        #c9a84c;
+  --gold-bright: #f0d080;
+  --gold-dim:    rgba(201,168,76,0.25);
+  --parchment:   #f4e4bc;
+  --parchment-m: rgba(244,228,188,0.55);
+  --crimson:     #8b0000;
+  --azure:       #1e4b8f;
+  --forest:      #1a472a;
+  --purple:      #3d1a6e;
+
+  --f-title: 'Cinzel Decorative', serif;
+  --f-head:  'Cinzel', serif;
+  --f-body:  'Crimson Text', serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:  cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+/* ═══════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dim) transparent;
+}
+body {
+  font-family: var(--f-body);
+  background: var(--void);
+  color: var(--parchment);
+  overscroll-behavior: none;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ═══════════════════════════════════════════
+   GLOBAL STARS LAYER
+═══════════════════════════════════════════ */
+#stars-layer {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+}
+.star {
+  position: absolute; border-radius: 50%; background: #fff;
+  animation: twinkle var(--d,2s) ease-in-out infinite alternate;
+  animation-delay: var(--dl,0s);
+}
+@keyframes twinkle {
+  from { opacity: .05; transform: scale(.7); }
+  to   { opacity: 1;   transform: scale(1.3); }
+}
+
+/* ═══════════════════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════════════════ */
+#progress {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+  box-shadow: 0 0 8px var(--gold);
+  z-index: 900; width: 0%;
+  transition: width .4s var(--ease-out);
+}
+
+/* ═══════════════════════════════════════════
+   NAV DOTS
+═══════════════════════════════════════════ */
+#nav-dots {
+  position: fixed; right: 1.25rem; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: .65rem;
+  z-index: 900;
+}
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,.5);
+  background: rgba(201,168,76,.15);
+  cursor: pointer;
+  transition: all .3s ease;
+  position: relative;
+}
+.dot.active {
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+  transform: scale(1.4);
+}
+.dot::before {
+  content: attr(data-label);
+  position: absolute; right: 1.4rem; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--f-head); font-size: .6rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  transition: opacity .2s;
+}
+.dot:hover::before { opacity: 1; }
+@media (max-width: 480px) {
+  #nav-dots { right: .6rem; }
+  .dot { width: 5px; height: 5px; }
+}
+
+/* ═══════════════════════════════════════════
+   SCENE BASE
+═══════════════════════════════════════════ */
+.scene {
+  position: relative;
+  min-height: 100vh; width: 100%;
+  scroll-snap-align: start;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden;
+  padding: clamp(4rem,8vh,6rem) clamp(1rem,5vw,3rem) clamp(3rem,6vh,5rem);
+}
+.scene > * { position: relative; z-index: 2; }
+.scene-bg {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none;
+}
+
+/* Chapter label */
+.chapter-label {
+  font-family: var(--f-head);
+  font-size: .65rem; letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--gold); opacity: .7;
+  text-align: center; margin-bottom: .5rem;
+}
+.scene-title {
+  font-family: var(--f-title);
+  font-size: clamp(1.4rem, 4.5vw, 2.6rem);
+  color: var(--gold);
+  text-align: center; line-height: 1.2;
+  text-shadow: 0 0 40px rgba(201,168,76,.5);
+  margin-bottom: .5rem;
+}
+.gold-rule {
+  width: 120px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: .6rem auto 1.5rem;
+}
+
+/* ═══════════════════════════════════════════
+   ASSET PLACEHOLDER
+═══════════════════════════════════════════ */
+.asset {
+  border: 1.5px dashed rgba(201,168,76,.35);
+  background: rgba(201,168,76,.04);
+  border-radius: 4px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: .4rem; text-align: center;
+  padding: .8rem;
+}
+.asset .asset-emoji { font-size: 2rem; }
+.asset .asset-label {
+  font-family: var(--f-head); font-size: .58rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(201,168,76,.5); line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════
+   REVEAL ANIMATIONS (triggered by IntersectionObserver)
+═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-scale {
+  opacity: 0; transform: scale(.9);
+  transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+/* Stagger delays */
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .2s; }
+.d3 { transition-delay: .3s; }
+.d4 { transition-delay: .4s; }
+.d5 { transition-delay: .5s; }
+.d6 { transition-delay: .6s; }
+
+/* ═══════════════════════════════════════════
+   FLOATING ANIMATION
+═══════════════════════════════════════════ */
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(-1.5deg); }
+  50%      { transform: translateY(-18px) rotate(1.5deg); }
+}
+@keyframes float-slow {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes glow-pulse {
+  from { filter: drop-shadow(0 0 8px rgba(201,168,76,.3)); }
+  to   { filter: drop-shadow(0 0 28px rgba(201,168,76,.85)); }
+}
+@keyframes rise {
+  0%   { transform: translateY(0) scale(0); opacity: 0; }
+  20%  { opacity: .85; }
+  100% { transform: translateY(-80vh) scale(1.2); opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════
+   CANDLE COMPONENT
+═══════════════════════════════════════════ */
+.candle-group {
+  display: flex; align-items: flex-end; gap: 1.2rem;
+  justify-content: center; margin-bottom: 1.5rem;
+}
+.candle {
+  display: flex; flex-direction: column; align-items: center;
+  animation: float-slow var(--cd,3s) ease-in-out infinite;
+  animation-delay: var(--cdl,0s);
+}
+.candle-flame {
+  width: 7px; height: 13px;
+  background: radial-gradient(ellipse at 50% 100%, #ffd700 0%, #ff6b00 55%, transparent 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flicker .25s ease-in-out infinite alternate;
+  position: relative;
+}
+.candle-flame::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
+  width: 3px; height: 4px; background: #888; border-radius: 1px;
+}
+@keyframes flicker {
+  from { transform: scaleX(1) scaleY(1); }
+  to   { transform: scaleX(.8) scaleY(1.15); }
+}
+.candle-body {
+  width: 7px; height: var(--ch, 36px);
+  background: linear-gradient(to bottom, #f4e4bc, #c4a060);
+  border-radius: 1px 1px 0 0;
+}
+
+/* ═══════════════════════════════════════════
+   PARCHMENT CARD
+═══════════════════════════════════════════ */
+.parchment {
+  background: rgba(244,228,188,.06);
+  border: 1px solid rgba(201,168,76,.3);
+  border-radius: 2px; padding: 1.4rem 1.6rem;
+  position: relative;
+}
+.parchment::before, .parchment::after {
+  content: '✦';
+  position: absolute; font-size: 1rem; color: var(--gold-dim);
+}
+.parchment::before { top: .6rem; left: .6rem; }
+.parchment::after  { bottom: .6rem; right: .6rem; }
+.parchment-top-rule {
+  position: absolute; top: 0; left: 10%; right: 10%; height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+/* Tag chips */
+.chip {
+  display: inline-block;
+  padding: .2rem .65rem;
+  border: 1px solid rgba(201,168,76,.35);
+  background: rgba(201,168,76,.07);
+  font-family: var(--f-head); font-size: .6rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); border-radius: 1px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .8rem; }
+
+/* Metric highlight */
+.metric {
+  color: var(--gold-bright); font-weight: 600;
+  font-family: var(--f-head);
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL HINT
+═══════════════════════════════════════════ */
+.scroll-hint {
+  position: absolute; bottom: 1.8rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .35rem;
+  cursor: pointer; animation: float-slow 2.5s ease-in-out infinite; z-index: 5;
+}
+.scroll-hint span {
+  font-family: var(--f-head); font-size: .58rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(201,168,76,.4);
+}
+.scroll-hint .chevron {
+  width: 16px; height: 16px;
+  border-right: 1.5px solid rgba(201,168,76,.4);
+  border-bottom: 1.5px solid rgba(201,168,76,.4);
+  transform: rotate(45deg);
+}
+
+/* ═══════════════════════════════════════════
+   STORYBOARD ANNOTATIONS (dev labels)
+═══════════════════════════════════════════ */
+.sb {
+  position: absolute; top: .6rem; left: .8rem;
+  font-family: monospace; font-size: .58rem;
+  color: rgba(201,168,76,.3); letter-spacing: .05em;
+  pointer-events: none; z-index: 10;
+}
+
+/* ═══════════════════════════════════════════
+   SCENE 1 — THE ACCEPTANCE LETTER (INTRO)
+═══════════════════════════════════════════ */
+#s-intro {
+  background: radial-gradient(ellipse at 50% 80%, #1a0a2e 0%, var(--void) 65%);
+}
+#s-intro::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(201,168,76,.06) 0%, transparent 55%);
+  z-index: 1; pointer-events: none;
+}
+#particles-layer {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+}
+.p-dot {
+  position: absolute;
+  border-radius: 50%;
+  animation: rise linear infinite;
+}
+.intro-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1.1rem; max-width: 520px; text-align: center;
+}
+.seal-wrap {
+  animation: float 5s ease-in-out infinite, glow-pulse 3s ease-in-out infinite alternate;
+}
+.intro-name {
+  font-family: var(--f-title);
+  font-size: clamp(2rem, 7vw, 4rem);
+  color: var(--gold);
+  text-shadow: 0 0 60px rgba(201,168,76,.7);
+  line-height: 1.1; letter-spacing: .02em;
+}
+.intro-role {
+  font-family: var(--f-head);
+  font-size: clamp(.85rem, 2vw, 1.05rem);
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--parchment-m);
+}
+.intro-tagline {
+  font-family: var(--f-body); font-style: italic;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  color: rgba(244,228,188,.5);
+}
+.cta {
+  margin-top: .5rem;
+  padding: .85rem 2.4rem;
+  border: 1.5px solid var(--gold);
+  background: transparent;
+  color: var(--gold); font-family: var(--f-head);
+  font-size: .85rem; letter-spacing: .12em;
+  text-transform: uppercase; cursor: pointer;
+  transition: all .3s ease;
+  animation: pulse-ring 2.5s ease-in-out infinite;
+}
+.cta:hover { background: var(--gold); color: var(--void); }
+@keyframes pulse-ring {
+  0%,100% { box-shadow: 0 0 0 0 rgba(201,168,76,.35); }
+  50%      { box-shadow: 0 0 0 10px rgba(201,168,76,0); }
+}
+
+/* ═══════════════════════════════════════════
+   SCENE 2 — HOGWARTS YEARS (EDUCATION)
+═══════════════════════════════════════════ */
+#s-education {
+  background: linear-gradient(180deg, #0d0800 0%, #1a1000 40%, #0d0a20 100%);
+}
+.edu-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+  max-width: 600px; width: 100%;
+}
+@media (max-width: 520px) { .edu-grid { grid-template-columns: 1fr; } }
+.edu-scroll {
+  padding: 1.6rem 1.4rem;
+  background: rgba(244,228,188,.05);
+  border: 1px solid rgba(201,168,76,.35);
+  position: relative; overflow: hidden;
+}
+.edu-scroll::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.edu-degree {
+  font-family: var(--f-head); font-size: .62rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: .4rem;
+}
+.edu-school {
+  font-family: var(--f-title); font-size: clamp(.9rem, 2.2vw, 1.15rem);
+  color: var(--parchment); line-height: 1.25; margin-bottom: .4rem;
+}
+.edu-sub {
+  font-family: var(--f-body); font-size: .9rem;
+  color: var(--parchment-m);
+}
+.edu-score {
+  font-family: var(--f-head); font-size: 1.6rem;
+  color: var(--gold); margin-top: .8rem;
+}
+.edu-score small { font-size: .7rem; letter-spacing: .1em; color: var(--parchment-m); }
+
+/* ═══════════════════════════════════════════
+   SCENE 3 — THE APPRENTICESHIP (SAP LABS)
+═══════════════════════════════════════════ */
+#s-sap {
+  background: linear-gradient(160deg, #000d1a 0%, #001225 55%, #050d00 100%);
+}
+/* Blueprint grid overlay */
+#s-sap .scene-bg {
+  background-image:
+    linear-gradient(rgba(30,100,180,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,100,180,.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.timeline-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  max-width: 580px; width: 100%;
+  padding: .9rem 1rem;
+  border-left: 2px solid rgba(30,100,180,.4);
+  margin-left: 1rem; position: relative;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute; left: -5px; top: 1.1rem;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #1e6ab4;
+  box-shadow: 0 0 8px #1e6ab4;
+}
+.tl-title {
+  font-family: var(--f-head); font-size: .82rem;
+  letter-spacing: .06em; color: #5aabff;
+  margin-bottom: .3rem;
+}
+.tl-desc {
+  font-family: var(--f-body); font-size: 1rem;
+  color: var(--parchment-m); line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════
+   SCENE 4 — THE MINISTRY (MICROSOFT)
+═══════════════════════════════════════════ */
+#s-microsoft {
+  background: linear-gradient(180deg, #06000f 0%, #0e0020 50%, #050020 100%);
+}
+/* Flying memos */
+.memo {
+  position: absolute; width: 28px; height: 36px;
+  background: rgba(201,168,76,.06);
+  border: 1px solid rgba(201,168,76,.15);
+  border-radius: 2px;
+  animation: fly-memo linear infinite;
+  pointer-events: none; z-index: 1;
+}
+@keyframes fly-memo {
+  0%   { transform: translate(0,0) rotate(0deg); opacity: 0; }
+  10%  { opacity: .7; }
+  90%  { opacity: .5; }
+  100% { transform: translate(var(--mx), var(--my)) rotate(var(--mr,30deg)); opacity: 0; }
+}
+.dept-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem;
+  max-width: 680px; width: 100%;
+}
+@media (max-width: 580px) {
+  .dept-grid { grid-template-columns: 1fr; }
+}
+.dept-card {
+  background: rgba(61,26,110,.2);
+  border: 1px solid rgba(120,60,220,.25);
+  padding: 1.2rem;
+  position: relative; overflow: hidden;
+  transition: border-color .3s, transform .3s;
+}
+.dept-card:hover {
+  border-color: rgba(120,60,220,.6);
+  transform: translateY(-4px);
+}
+.dept-card::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, rgba(160,100,255,.6), transparent);
+}
+.dept-icon { font-size: 1.6rem; margin-bottom: .5rem; }
+.dept-name {
+  font-family: var(--f-head); font-size: .75rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: #b88fff; margin-bottom: .5rem;
+}
+.dept-desc {
+  font-family: var(--f-body); font-size: .92rem;
+  color: var(--parchment-m); line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════
+   SCENE 5 — THE FORBIDDEN FOREST (PROJECTS)
+═══════════════════════════════════════════ */
+#s-projects {
+  background: radial-gradient(ellipse at 50% 0%, #0a1a10 0%, #030d06 50%, var(--void) 100%);
+}
+/* Mist */
+#s-projects .scene-bg {
+  background: radial-gradient(ellipse at 20% 80%, rgba(0,80,30,.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 90%, rgba(0,60,20,.1) 0%, transparent 50%);
+}
+/* NearMint featured */
+.nearmint-card {
+  max-width: 560px; width: 100%;
+  background: linear-gradient(135deg, rgba(26,71,42,.25) 0%, rgba(10,26,16,.4) 100%);
+  border: 1px solid rgba(42,200,80,.35);
+  border-radius: 3px; padding: 1.6rem;
+  position: relative; overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 40px rgba(42,200,80,.08);
+  transition: box-shadow .4s, border-color .4s;
+}
+.nearmint-card:hover {
+  box-shadow: 0 0 60px rgba(42,200,80,.18);
+  border-color: rgba(42,200,80,.6);
+}
+.nearmint-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, #2ac850, transparent);
+}
+.nearmint-badge {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .22rem .7rem;
+  background: rgba(42,200,80,.15);
+  border: 1px solid rgba(42,200,80,.4);
+  border-radius: 20px;
+  font-family: var(--f-head); font-size: .6rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: #2ac850; margin-bottom: .8rem;
+}
+.nearmint-badge::before { content: '★'; }
+.nearmint-title {
+  font-family: var(--f-title); font-size: clamp(1.3rem,4vw,1.8rem);
+  color: var(--parchment); margin-bottom: .3rem;
+}
+.nearmint-role {
+  font-family: var(--f-head); font-size: .68rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: #2ac850; margin-bottom: .8rem;
+}
+.proj-grid {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: .8rem;
+  max-width: 560px; width: 100%;
+}
+@media (min-width: 580px) { .proj-grid { grid-template-columns: repeat(4,1fr); } }
+.proj-orb {
+  aspect-ratio: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: .4rem;
+  background: rgba(26,71,42,.2);
+  border: 1px solid rgba(42,120,60,.3);
+  padding: .8rem; cursor: default;
+  transition: all .3s ease; text-align: center;
+  position: relative; overflow: hidden;
+}
+.proj-orb::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 110%, rgba(42,200,80,.12), transparent 65%);
+  opacity: 0; transition: opacity .3s;
+}
+.proj-orb:hover::before { opacity: 1; }
+.proj-orb:hover { border-color: rgba(42,200,80,.55); transform: scale(1.04); }
+.proj-orb .p-emoji { font-size: 1.6rem; }
+.proj-orb h3 {
+  font-family: var(--f-head); font-size: .6rem;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--parchment-m);
+}
+.proj-orb .live-dot {
+  position: absolute; top: .5rem; right: .5rem;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #2ac850;
+  box-shadow: 0 0 0 0 rgba(42,200,80,.4);
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(42,200,80,.4); }
+  50%      { box-shadow: 0 0 0 5px rgba(42,200,80,0); }
+}
+
+/* ═══════════════════════════════════════════
+   SCENE 6 — THE POTIONS CLASS (SKILLS)
+═══════════════════════════════════════════ */
+#s-skills {
+  background: linear-gradient(180deg, #050015 0%, #0d0030 50%, #0a0025 100%);
+}
+.potions-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1rem; max-width: 620px; width: 100%;
+}
+@media (max-width: 460px) { .potions-grid { grid-template-columns: repeat(2,1fr); } }
+.potion {
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  text-align: center; cursor: default;
+  transition: transform .3s ease;
+  padding: .8rem;
+}
+.potion:hover { transform: translateY(-8px); }
+.potion-bottle {
+  width: 44px; height: 64px;
+  border-radius: 4px 4px 10px 10px;
+  border: 1px solid;
+  position: relative; overflow: hidden;
+}
+.potion-bottle::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: var(--fill, 70%);
+  background: var(--color);
+  opacity: .7;
+  animation: bubble-fill 4s ease-in-out infinite alternate;
+}
+.potion-bottle::after {
+  content: '●●●';
+  position: absolute; bottom: 5px; left: 0; right: 0;
+  text-align: center; font-size: 4px; letter-spacing: 3px;
+  color: rgba(255,255,255,.4);
+  animation: bubbles .8s ease-in-out infinite alternate;
+}
+@keyframes bubble-fill {
+  from { height: var(--fill); }
+  to   { height: calc(var(--fill) + 8%); }
+}
+@keyframes bubbles {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-4px); }
+}
+.potion-neck {
+  width: 14px; height: 12px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid; border-bottom: none;
+  border-radius: 3px 3px 0 0;
+  margin-bottom: -1px;
+}
+.potion-wrap { display: flex; flex-direction: column; align-items: center; }
+.potion-name {
+  font-family: var(--f-head); font-size: .65rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: .15rem;
+}
+.potion-vals {
+  font-family: var(--f-body); font-size: .82rem;
+  color: var(--parchment-m); line-height: 1.45;
+}
+
+/* Potion colors */
+.p-red    { --color: #e53935; border-color: rgba(229,57,53,.4); }
+.p-blue   { --color: #1e88e5; border-color: rgba(30,136,229,.4); }
+.p-purple { --color: #8e24aa; border-color: rgba(142,36,170,.4); }
+.p-orange { --color: #f57c00; border-color: rgba(245,124,0,.4); }
+.p-cyan   { --color: #00acc1; border-color: rgba(0,172,193,.4); }
+.p-green  { --color: #43a047; border-color: rgba(67,160,71,.4); }
+
+.p-neck-red    { border-color: rgba(229,57,53,.4);   background: rgba(229,57,53,.1); }
+.p-neck-blue   { border-color: rgba(30,136,229,.4);  background: rgba(30,136,229,.1); }
+.p-neck-purple { border-color: rgba(142,36,170,.4);  background: rgba(142,36,170,.1); }
+.p-neck-orange { border-color: rgba(245,124,0,.4);   background: rgba(245,124,0,.1); }
+.p-neck-cyan   { border-color: rgba(0,172,193,.4);   background: rgba(0,172,193,.1); }
+.p-neck-green  { border-color: rgba(67,160,71,.4);   background: rgba(67,160,71,.1); }
+
+.p-name-red    { color: #ef5350; }
+.p-name-blue   { color: #42a5f5; }
+.p-name-purple { color: #ba68c8; }
+.p-name-orange { color: #ffa726; }
+.p-name-cyan   { color: #26c6da; }
+.p-name-green  { color: #66bb6a; }
+
+/* ═══════════════════════════════════════════
+   SCENE 7 — THE OWLERY (CONTACT)
+═══════════════════════════════════════════ */
+#s-contact {
+  background: radial-gradient(ellipse at 50% 20%, #1a0a30 0%, var(--void) 70%);
+}
+.fireworks {
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 1; overflow: hidden;
+}
+.fw {
+  position: absolute; border-radius: 50%;
+  animation: fw-burst var(--fd, 2s) ease-out var(--fdl,0s) infinite;
+  opacity: 0;
+}
+@keyframes fw-burst {
+  0%  { transform: translate(0,0) scale(0); opacity: 1; }
+  80% { opacity: .4; }
+  100%{ transform: translate(var(--fx),var(--fy)) scale(1.2); opacity: 0; }
+}
+.win-title {
+  font-family: var(--f-title);
+  font-size: clamp(1.6rem, 5.5vw, 3rem);
+  color: var(--gold);
+  text-shadow: 0 0 50px rgba(201,168,76,.8);
+  text-align: center; margin-bottom: .3rem;
+  animation: glow-pulse 2.5s ease-in-out infinite alternate;
+}
+.win-sub {
+  font-family: var(--f-body); font-style: italic;
+  font-size: clamp(.95rem, 2.2vw, 1.2rem);
+  color: var(--parchment-m); text-align: center; margin-bottom: 2rem;
+}
+.contact-stack { display: flex; flex-direction: column; gap: .9rem; max-width: 420px; width: 100%; }
+.contact-link {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.4rem;
+  border: 1px solid rgba(201,168,76,.3);
+  background: rgba(201,168,76,.04);
+  transition: all .3s var(--ease-out);
+}
+.contact-link:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,.1);
+  transform: translateX(8px);
+}
+.contact-link .ci { font-size: 1.4rem; flex-shrink: 0; }
+.contact-link .cl {
+  font-family: var(--f-head); font-size: .6rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: .15rem;
+}
+.contact-link .cv {
+  font-family: var(--f-body); font-size: 1rem;
+  color: var(--parchment);
+}
+
+/* ═══════════════════════════════════════════
+   YEARS-OF-MAGIC BANNER (Scene 1)
+═══════════════════════════════════════════ */
+.years-strip {
+  display: flex; align-items: center; gap: 1rem;
+  justify-content: center; margin-top: .5rem;
+}
+.years-num {
+  font-family: var(--f-title); font-size: 2.8rem;
+  color: var(--gold); line-height: 1;
+  text-shadow: 0 0 30px rgba(201,168,76,.6);
+}
+.years-txt {
+  font-family: var(--f-head); font-size: .7rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--parchment-m); line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   COMPANY HEADER ROW
+═══════════════════════════════════════════ */
+.company-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  flex-wrap: wrap; gap: .4rem; margin-bottom: .25rem;
+}
+.company-name {
+  font-family: var(--f-title);
+  font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+  color: var(--parchment);
+}
+.company-dates {
+  font-family: var(--f-head); font-size: .68rem;
+  letter-spacing: .1em; color: var(--parchment-m);
+}
+.company-role {
+  font-family: var(--f-head); font-size: .72rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  margin-bottom: .9rem;
+}
+.bullet-list {
+  list-style: none; padding: 0; margin-top: .6rem;
+}
+.bullet-list li {
+  font-family: var(--f-body); font-size: 1rem;
+  color: var(--parchment-m); line-height: 1.6;
+  padding-left: 1.2rem; position: relative; margin-bottom: .3rem;
+}
+.bullet-list li::before {
+  content: '✦';
+  position: absolute; left: 0; font-size: .5rem;
+  color: var(--gold); top: .45em;
+}
+.bullet-list li b { color: var(--parchment); font-weight: 600; }
+
+/* ═══════════════════════════════════════════
+   MEDIA QUERY: max-width 768px tweaks
+═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .dept-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .potions-grid { gap: .7rem; }
+}
+
+/* ═══════════════════════════════════════════
+   PRINT HIDE
+═══════════════════════════════════════════ */
+@media print { #nav-dots, #progress, .scroll-hint, .sb { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- ───── GLOBAL LAYERS ───── -->
+<div id="stars-layer"></div>
+<div id="progress"></div>
+
+<nav id="nav-dots">
+  <div class="dot active" data-scene="0" data-label="Intro"></div>
+  <div class="dot" data-scene="1" data-label="Education"></div>
+  <div class="dot" data-scene="2" data-label="SAP Labs"></div>
+  <div class="dot" data-scene="3" data-label="Microsoft"></div>
+  <div class="dot" data-scene="4" data-label="Projects"></div>
+  <div class="dot" data-scene="5" data-label="Skills"></div>
+  <div class="dot" data-scene="6" data-label="Contact"></div>
+</nav>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  SCENE 1 · THE ACCEPTANCE LETTER                   -->
+<!-- ════════════════════════════════════════════════════ -->
+<section class="scene" id="s-intro">
+  <span class="sb">SCENE 1 · THE ACCEPTANCE LETTER</span>
+  <div id="particles-layer"></div>
+
+  <div class="intro-wrap">
+
+    <!-- ASSET: Hogwarts crest wax seal, gold ink on dark parchment, circular, ornate, glowing -->
+    <div class="seal-wrap">
+      <div class="asset" style="width:110px;height:110px;border-radius:50%;">
+        <span class="asset-emoji">⚜️</span>
+        <span class="asset-label">Hogwarts<br>crest seal<br>PNG</span>
+      </div>
+    </div>
+
+    <h1 class="intro-name reveal visible">Vinay Prabhu</h1>
+    <div class="gold-rule" style="margin-top:.2rem"></div>
+    <p class="intro-role reveal visible d1">Software Engineer · Full-Stack Product Builder</p>
+    <p class="intro-tagline reveal visible d2">"Seven years of magic, built from scratch."</p>
+
+    <div class="years-strip reveal visible d3">
+      <span class="years-num">7+</span>
+      <span class="years-txt">Years of<br>Engineering</span>
+      <span style="color:var(--gold-dim);font-size:1.2rem;">·</span>
+      <span class="years-txt">Microsoft<br>· SAP Labs</span>
+    </div>
+
+    <button class="cta reveal visible d4" onclick="go(1)">Begin the Journey ✦</button>
+  </div>
+
+  <div class="scroll-hint" onclick="go(1)">
+    <span>Scroll</span><div class="chevron"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  SCENE 2 · THE HOGWARTS YEARS (EDUCATION)          -->
+<!-- ════════════════════════════════════════════════════ -->
+<section class="scene" id="s-education">
+  <span class="sb">SCENE 2 · THE HOGWARTS YEARS</span>
+  <div class="scene-bg"></div>
+
+  <div class="candle-group reveal" style="--cdl:0s">
+    <div class="candle" style="--cd:3.2s;--cdl:.0s"><div class="candle-flame"></div><div class="candle-body" style="--ch:28px"></div></div>
+    <div class="candle" style="--cd:2.8s;--cdl:.5s"><div class="candle-flame"></div><div class="candle-body" style="--ch:44px"></div></div>
+    <div class="candle" style="--cd:3.5s;--cdl:.2s"><div class="candle-flame"></div><div class="candle-body" style="--ch:36px"></div></div>
+    <div class="candle" style="--cd:2.6s;--cdl:.8s"><div class="candle-flame"></div><div class="candle-body" style="--ch:52px"></div></div>
+    <div class="candle" style="--cd:3.1s;--cdl:.3s"><div class="candle-flame"></div><div class="candle-body" style="--ch:32px"></div></div>
+  </div>
+
+  <p class="chapter-label reveal d1">Chapter II · 2014 – 2020</p>
+  <h2 class="scene-title reveal d2">The Hogwarts Years</h2>
+  <div class="gold-rule"></div>
+
+  <!-- ASSET: Sorting hat on a wooden stool, candlelit, Harry Potter style, dark background -->
+  <div class="asset reveal d3" style="width:80px;height:90px;border-radius:50%;margin-bottom:1.2rem;animation:float-slow 4s ease-in-out infinite;">
+    <span class="asset-emoji">🎩</span>
+    <span class="asset-label">Sorting<br>Hat PNG</span>
+  </div>
+
+  <div class="edu-grid">
+    <div class="edu-scroll reveal d3">
+      <div class="edu-degree">Post Graduate</div>
+      <div class="edu-school">BITS Pilani</div>
+      <div class="edu-sub">M.Tech, Software Engineering</div>
+      <div class="edu-score">8.35<small> / 10</small></div>
+      <div class="chips" style="margin-top:.5rem">
+        <span class="chip">2018 – 2020</span>
+      </div>
+    </div>
+    <div class="edu-scroll reveal d4">
+      <div class="edu-degree">Under Graduate</div>
+      <div class="edu-school">RNS Institute of Technology</div>
+      <div class="edu-sub">B.E., Computer Science · VTU</div>
+      <div class="edu-score">80%</div>
+      <div class="chips" style="margin-top:.5rem">
+        <span class="chip">2014 – 2018</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" onclick="go(2)" style="position:relative;bottom:auto;left:auto;transform:none;margin-top:2rem;">
+    <span>Continue</span><div class="chevron"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  SCENE 3 · THE APPRENTICESHIP (SAP LABS)           -->
+<!-- ════════════════════════════════════════════════════ -->
+<section class="scene" id="s-sap">
+  <span class="sb">SCENE 3 · THE APPRENTICESHIP</span>
+  <div class="scene-bg"></div>
+
+  <p class="chapter-label reveal">Chapter III · Aug 2018 – May 2022</p>
+  <h2 class="scene-title reveal d1">The Apprenticeship</h2>
+  <div class="gold-rule"></div>
+
+  <div class="parchment reveal d2" style="max-width:580px;width:100%;margin-bottom:1.4rem;">
+    <div class="parchment-top-rule"></div>
+    <div class="company-row" style="margin-top:.3rem">
+      <span class="company-name">SAP Labs</span>
+      <span class="company-dates">Aug 2018 – May 2022 · 3.5 yrs</span>
+    </div>
+    <p class="company-role" style="color:#5aabff;">Associate Software Engineer</p>
+    <div class="chips" style="margin-bottom:1rem">
+      <span class="chip">Java</span><span class="chip">Spring Boot</span>
+      <span class="chip">SAP UI5</span><span class="chip">S/4 HANA</span>
+      <span class="chip">PostgreSQL</span><span class="chip">Cloud Foundry</span>
+    </div>
+  </div>
+
+  <div style="max-width:580px;width:100%;display:flex;flex-direction:column;gap:.5rem;">
+    <div class="timeline-item reveal d2">
+      <div>
+        <div class="tl-title">Sourcing Simulation &amp; Optimization</div>
+        <div class="tl-desc">Built persona-based procurement apps (SAP UI5) and REST microservices (Spring Boot) helping suppliers secure best material rates.</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal d3">
+      <div>
+        <div class="tl-title">Test Data Engineering</div>
+        <div class="tl-desc">Automated tunnelled connections across systems, <span class="metric">cutting manual effort by 60%</span>. Built a Test Data Container integrated with S/4 HANA Cloud.</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal d4">
+      <div>
+        <div class="tl-title">Camouflage — UI Image Comparison Tool</div>
+        <div class="tl-desc">Java + Python + SAP UI5 tool with SharePoint API integration, <span class="metric">improving performance by 80%</span>.</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal d5">
+      <div>
+        <div class="tl-title">Leave Tracking Tool</div>
+        <div class="tl-desc">Designed, built, and deployed via Jenkins with persona-based roles and security.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" onclick="go(3)" style="position:relative;bottom:auto;left:auto;transform:none;margin-top:1.5rem;">
+    <span>Continue</span><div class="chevron"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  SCENE 4 · THE MINISTRY OF MAGIC (MICROSOFT)       -->
+<!-- ════════════════════════════════════════════════════ -->
+<section class="scene" id="s-microsoft">
+  <span class="sb">SCENE 4 · THE MINISTRY OF MAGIC</span>
+  <div class="fireworks" id="fireworks"></div>
+
+  <p class="chapter-label reveal">Chapter IV · 2022 – Present</p>
+  <h2 class="scene-title reveal d1">The Ministry of Magic</h2>
+  <div class="gold-rule"></div>
+
+  <div class="parchment reveal d2" style="max-width:680px;width:100%;margin-bottom:1.4rem;">
+    <div class="parchment-top-rule"></div>
+    <div class="company-row" style="margin-top:.3rem">
+      <span class="company-name">Microsoft Corporation</span>
+      <span class="company-dates">2022 – Present</span>
+    </div>
+    <p class="company-role" style="color:#b88fff;">Software Engineer 2 &nbsp;·&nbsp; L62</p>
+    <div class="chips">
+      <span class="chip">Dynamics 365</span><span class="chip">X++</span>
+      <span class="chip">Dataverse</span><span class="chip">PCF</span>
+      <span class="chip">CAPI Framework</span><span class="chip">Power Platform</span>
+      <span class="chip">Azure DevOps</span>
+    </div>
+  </div>
+
+  <!-- ASSET: Ministry of Magic grand hall interior, Art Deco, purple/gold tones, flying memos -->
+  <div class="asset reveal d2" style="width:100%;max-width:420px;height:80px;margin-bottom:1.2rem;">
+    <span class="asset-label">BG ASSET · Ministry hall interior — Art Deco purple/gold, flying paper memos</span>
+  </div>
+
+  <div class="dept-grid">
+    <div class="dept-card reveal d3">
+      <div class="dept-icon">📊</div>
+      <div class="dept-name">Business Performance Planning</div>
+      <div class="dept-desc">Interactive planning visuals &amp; Model-Driven App on Dynamics 365 for finance &amp; operations users.</div>
+    </div>
+    <div class="dept-card reveal d4">
+      <div class="dept-icon">🤖</div>
+      <div class="dept-name">Recruiting App · Copilot</div>
+      <div class="dept-desc">Recruitment app from scratch in Dataverse. Copilot features: Job Description Generator &amp; Bulk Resume Parser via CAPI framework.</div>
+    </div>
+    <div class="dept-card reveal d5">
+      <div class="dept-icon">🌐</div>
+      <div class="dept-name">Global Address Book &amp; Platform</div>
+      <div class="dept-desc">X++ framework extensions. Azure DevOps CI/CD pipelines &amp; repositories for the team.</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" onclick="go(4)" style="position:relative;bottom:auto;left:auto;transform:none;margin-top:1.5rem;">
+    <span>Continue</span><div class="chevron"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  SCENE 5 · THE FORBIDDEN FOREST (PROJECTS)         -->
+<!-- ════════════════════════════════════════════════════ -->
+<section class="scene" id="s-projects">
+  <span class="sb">SCENE 5 · THE FORBIDDEN FOREST</span>
+  <div class="scene-bg"></div>
+
+  <p class="chapter-label reveal">Chapter V · Adventures &amp; Creations</p>
+  <h2 class="scene-title reveal d1">The Forbidden Forest</h2>
+  <div class="gold-rule"></div>
+
+  <!-- NearMint FEATURED -->
+  <div class="nearmint-card reveal d2">
+    <div class="nearmint-badge">Featured · Solo Founder Build</div>
+    <div class="company-row">
+      <span class="nearmint-title">NearMint</span>
+      <span class="company-dates">2026 – Present</span>
+    </div>
+    <p class="nearmint-role">India's Largest Trading-Card-Game Marketplace</p>
+    <div class="chips" style="margin-bottom:.8rem">
+      <span class="chip" style="border-color:rgba(42,200,80,.4);color:#2ac850;">Go</span>
+      <span class="chip" style="border-color:rgba(42,200,80,.4);color:#2ac850;">React</span>
+      <span class="chip" style="border-color:rgba(42,200,80,.4);color:#2ac850;">Full-Stack</span>
+      <span class="chip" style="border-color:rgba(42,200,80,.4);color:#2ac850;">Claude AI</span>
+    </div>
+    <ul class="bullet-list">
+      <li>Single-handedly designed, built &amp; shipped — architecture to launch.</li>
+      <li>Backend in <b>Go</b>, frontend in <b>React</b>: catalog, listings, search &amp; transactions.</li>
+      <li>AI-assisted development with <b>Claude</b> to accelerate solo delivery.</li>
+    </ul>
+    <!-- ASSET: Glowing crystal orb containing trading cards, magical green aura, dark forest bg -->
+    <div class="asset" style="width:60px;height:60px;border-radius:50%;position:absolute;top:1.2rem;right:1.2rem;border-color:rgba(42,200,80,.4);">
+      <span style="font-size:1.4rem">💎</span>
+      <span class="asset-label">artifact<br>PNG</span>
+    </div>
+  </div>
+
+  <!-- Other Projects -->
+  <div class="proj-grid">
+    <div class="proj-orb reveal d3">
+      <div class="live-dot"></div>
+      <span class="p-emoji">🍿</span>
+      <h3>PopcornTales</h3>
+      <p style="font-family:var(--f-body);font-size:.75rem;color:var(--parchment-m);margin-top:.2rem">Java · ReactJS · AWS Lambda · Firebase</p>
+    </div>
+    <div class="proj-orb reveal d4">
+      <span class="p-emoji">🍔</span>
+      <h3>Foodator</h3>
+      <p style="font-family:var(--f-body);font-size:.75rem;color:var(--parchment-m);margin-top:.2rem">TensorFlow · 93% acc · Zomato API</p>
+    </div>
+    <div class="proj-orb reveal d5">
+      <span class="p-emoji">🏏</span>
+      <h3>GoGully</h3>
+      <p style="font-family:var(--f-body);font-size:.75rem;color:var(--parchment-m);margin-top:.2rem">Spring Boot · ReactJS</p>
+    </div>
+    <div class="proj-orb reveal d6">
+      <span class="p-emoji">💤</span>
+      <h3>HealthByte</h3>
+      <p style="font-family:var(--f-body);font-size:.75rem;color:var(--parchment-m);margin-top:.2rem">AWS Lambda · Java · Sleep Apnea</p>
+    </div>
+  </div>
+
+  <div class="scroll-hint" onclick="go(5)" style="position:relative;bottom:auto;left:auto;transform:none;margin-top:1.5rem;">
+    <span>Continue</span><div class="chevron"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  SCENE 6 · THE POTIONS CLASS (SKILLS)              -->
+<!-- ════════════════════════════════════════════════════ -->
+<section class="scene" id="s-skills">
+  <span class="sb">SCENE 6 · THE POTIONS CLASS</span>
+
+  <p class="chapter-label reveal">Chapter VI · Magical Arts Mastered</p>
+  <h2 class="scene-title reveal d1">The Potions Class</h2>
+  <div class="gold-rule"></div>
+
+  <!-- ASSET: Rows of glowing potion bottles in a dark magical cabinet, each a different color -->
+  <div class="asset reveal d2" style="width:100%;max-width:360px;height:55px;margin-bottom:1.2rem;">
+    <span class="asset-label">BG ASSET · Dark potions cabinet / shelf, glowing colored bottles</span>
+  </div>
+
+  <div class="potions-grid">
+
+    <div class="potion reveal d2">
+      <div class="potion-wrap">
+        <div class="potion-neck p-neck-red"></div>
+        <div class="potion-bottle p-red" style="--fill:80%"></div>
+      </div>
+      <div class="potion-name p-name-red">Languages</div>
+      <div class="potion-vals">Go · Java · Python<br>TypeScript · X++</div>
+    </div>
+
+    <div class="potion reveal d3">
+      <div class="potion-wrap">
+        <div class="potion-neck p-neck-blue"></div>
+        <div class="potion-bottle p-blue" style="--fill:85%"></div>
+      </div>
+      <div class="potion-name p-name-blue">Frameworks</div>
+      <div class="potion-vals">Spring Boot · React<br>AWS Lambda · SAP UI5<br>Power Platform</div>
+    </div>
+
+    <div class="potion reveal d4">
+      <div class="potion-wrap">
+        <div class="potion-neck p-neck-purple"></div>
+        <div class="potion-bottle p-purple" style="--fill:75%"></div>
+      </div>
+      <div class="potion-name p-name-purple">AI &amp; Tooling</div>
+      <div class="potion-vals">Prompt Eng.<br>Claude · CAPI<br>TensorFlow</div>
+    </div>
+
+    <div class="potion reveal d3">
+      <div class="potion-wrap">
+        <div class="potion-neck p-neck-orange"></div>
+        <div class="potion-bottle p-orange" style="--fill:70%"></div>
+      </div>
+      <div class="potion-name p-name-orange">DevOps</div>
+      <div class="potion-vals">Azure DevOps<br>GitHub · Jenkins<br>Docker · SonarQube</div>
+    </div>
+
+    <div class="potion reveal d4">
+      <div class="potion-wrap">
+        <div class="potion-neck p-neck-cyan"></div>
+        <div class="potion-bottle p-cyan" style="--fill:78%"></div>
+      </div>
+      <div class="potion-name p-name-cyan">Cloud</div>
+      <div class="potion-vals">Azure · AWS<br>Cloud Foundry<br>Firebase</div>
+    </div>
+
+    <div class="potion reveal d5">
+      <div class="potion-wrap">
+        <div class="potion-neck p-neck-green"></div>
+        <div class="potion-bottle p-green" style="--fill:65%"></div>
+      </div>
+      <div class="potion-name p-name-green">Databases</div>
+      <div class="potion-vals">PostgreSQL · HANA<br>MongoDB · Dataverse<br>DynamoDB · MySQL</div>
+    </div>
+
+  </div>
+
+  <div class="scroll-hint" onclick="go(6)" style="position:relative;bottom:auto;left:auto;transform:none;margin-top:2rem;">
+    <span>Final Chapter</span><div class="chevron"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  SCENE 7 · THE OWLERY (CONTACT)                    -->
+<!-- ════════════════════════════════════════════════════ -->
+<section class="scene" id="s-contact">
+  <span class="sb">SCENE 7 · THE OWLERY</span>
+  <div class="fireworks" id="fireworks2"></div>
+
+  <!-- ASSET: White owl carrying glowing scroll, flying against night sky, magical -->
+  <div class="asset reveal" style="width:100px;height:100px;border-radius:50%;margin-bottom:1.2rem;animation:float 5s ease-in-out infinite,glow-pulse 3s ease-in-out infinite alternate;">
+    <span class="asset-emoji">🦉</span>
+    <span class="asset-label">Owl w/<br>scroll PNG</span>
+  </div>
+
+  <h2 class="win-title reveal d1">Quest Complete!</h2>
+  <p class="win-sub reveal d2">"Mischief Managed."</p>
+
+  <div class="contact-stack">
+    <a href="mailto:vinayprabhu19@gmail.com" class="contact-link reveal d3">
+      <span class="ci">📧</span>
+      <div><span class="cl">Send an Owl</span><span class="cv">vinayprabhu19@gmail.com</span></div>
+    </a>
+    <a href="https://www.linkedin.com/in/vinayprabhu19/" target="_blank" class="contact-link reveal d4">
+      <span class="ci">💼</span>
+      <div><span class="cl">The Wizarding Network</span><span class="cv">linkedin.com/in/vinayprabhu19</span></div>
+    </a>
+    <a href="https://vinayprabhu19.github.io" target="_blank" class="contact-link reveal d5">
+      <span class="ci">🔮</span>
+      <div><span class="cl">The Magical Grounds</span><span class="cv">vinayprabhu19.github.io</span></div>
+    </a>
+    <a href="tel:+919742440352" class="contact-link reveal d6">
+      <span class="ci">📞</span>
+      <div><span class="cl">Owl Post Telephone</span><span class="cv">+91 97424 40352</span></div>
+    </a>
+  </div>
+
+  <p style="margin-top:2.5rem;font-family:var(--f-head);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,168,76,.25);text-align:center;" class="reveal d6">
+    Storyboard v1 · Assets pending DALL·E generation · 2026
+  </p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPT
+═══════════════════════════════════════════════════════════ -->
+<script>
+const scenes = [...document.querySelectorAll('.scene')];
+const dots   = [...document.querySelectorAll('.dot')];
+const prog   = document.getElementById('progress');
+const N      = scenes.length;
+
+/* ── Stars ── */
+(function() {
+  const layer = document.getElementById('stars-layer');
+  for (let i = 0; i < 180; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const sz = Math.random() * 2.2 + .4;
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;`
+      + `width:${sz}px;height:${sz}px;`
+      + `--d:${1+Math.random()*2.5}s;--dl:${Math.random()*3}s;`;
+    layer.appendChild(s);
+  }
+})();
+
+/* ── Particles (Scene 1) ── */
+(function() {
+  const layer = document.getElementById('particles-layer');
+  const cols = ['#c9a84c','#f0d080','#ffffff','#e8c87a'];
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'p-dot';
+    const sz = Math.random() * 4 + 2;
+    p.style.cssText = `left:${Math.random()*100}%;bottom:0;`
+      + `width:${sz}px;height:${sz}px;border-radius:50%;`
+      + `background:${cols[i%cols.length]};`
+      + `animation-duration:${5+Math.random()*7}s;`
+      + `animation-delay:${Math.random()*6}s;`;
+    layer.appendChild(p);
+  }
+})();
+
+/* ── Flying memos (Scene 4) ── */
+(function() {
+  const layer = document.getElementById('fireworks');
+  for (let i = 0; i < 10; i++) {
+    const m = document.createElement('div');
+    m.className = 'memo';
+    const sx = (Math.random() - .5) * 600, sy = (Math.random() - .5) * 400;
+    m.style.cssText = `left:${20+Math.random()*60}%;top:${10+Math.random()*80}%;`
+      + `--mx:${sx}px;--my:${sy}px;--mr:${(Math.random()-0.5)*60}deg;`
+      + `animation-duration:${4+Math.random()*5}s;`
+      + `animation-delay:${Math.random()*4}s;`;
+    layer.appendChild(m);
+  }
+})();
+
+/* ── Celebration bursts (Scene 7) ── */
+function spawnFireworks() {
+  const layer = document.getElementById('fireworks2');
+  if (layer.childElementCount > 0) return;
+  const cols = ['#c9a84c','#f0d080','#fff','#8b0000','#3d1a6e','#2ac850'];
+  for (let i = 0; i < 50; i++) {
+    const f = document.createElement('div');
+    f.className = 'fw';
+    const ang = (i / 50) * 360 * Math.PI / 180;
+    const r   = 120 + Math.random() * 220;
+    f.style.cssText = `background:${cols[i%cols.length]};`
+      + `width:${4+Math.random()*6}px;height:${4+Math.random()*6}px;`
+      + `top:40%;left:50%;`
+      + `--fx:${Math.cos(ang)*r}px;--fy:${Math.sin(ang)*r}px;`
+      + `--fd:${1.5+Math.random()}s;--fdl:${Math.random()*.6}s;`;
+    layer.appendChild(f);
+  }
+}
+
+/* ── Navigation ── */
+function go(i) {
+  scenes[i].scrollIntoView({ behavior: 'smooth' });
+}
+
+dots.forEach(d => d.addEventListener('click', () => go(+d.dataset.scene)));
+
+document.addEventListener('keydown', e => {
+  const cur = getCurrent();
+  if (e.key === 'ArrowDown' && cur < N-1) go(cur+1);
+  if (e.key === 'ArrowUp'   && cur > 0  ) go(cur-1);
+});
+
+function getCurrent() {
+  let idx = 0, min = Infinity;
+  scenes.forEach((s,i) => {
+    const d = Math.abs(s.getBoundingClientRect().top);
+    if (d < min) { min = d; idx = i; }
+  });
+  return idx;
+}
+
+/* ── Scroll observer for dots + progress + reveal ── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const idx = scenes.indexOf(entry.target);
+      dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+      prog.style.width = `${((idx+1)/N)*100}%`;
+      if (idx === N-1) spawnFireworks();
+    }
+  });
+}, { threshold: .45 });
+scenes.forEach(s => io.observe(s));
+
+/* ── Reveal on scroll ── */
+const revealIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: .15 });
+document.querySelectorAll('.reveal').forEach(el => revealIO.observe(el));
+
+/* ── Touch swipe ── */
+let ty0 = 0;
+document.addEventListener('touchstart', e => { ty0 = e.touches[0].clientY; }, { passive: true });
+document.addEventListener('touchend', e => {
+  const dy = ty0 - e.changedTouches[0].clientY;
+  const cur = getCurrent();
+  if (Math.abs(dy) > 45) {
+    if (dy > 0 && cur < N-1) go(cur+1);
+    if (dy < 0 && cur > 0  ) go(cur-1);
+  }
+}, { passive: true });
+</script>
+</body>
+</html>
