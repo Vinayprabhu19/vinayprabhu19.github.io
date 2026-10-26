@@ -1,101 +1,36 @@
-# Vinay Prabhu — Interactive Resume
+﻿# Vinay Prabhu — Interactive 3D Resume
 
-A Harry Potter-themed interactive resume/portfolio website built as a side-scrolling game. Instead of a traditional PDF, visitors navigate a pixelated world using arrow keys or swipe gestures, moving through levels that reveal education, skills, and projects.
+Three.js side-scrolling resume, following the original Harry Potter-inspired journey through Bengaluru, Platform 9¾, experience, education, the hidden chamber, cloud gardens, projects, and contact.
 
-**Live site:** [vinayprabhu19.github.io](https://vinayprabhu19.github.io)
+Production domain: https://vinayprabhu.dev/
 
----
-
-## What it is
-
-A single-page, zero-build-step static website hosted on GitHub Pages. The entire experience is one HTML file, one CSS file, two JS files (plus jQuery), and a folder of PNG/WOFF assets.
-
-The player controls a character (Vinay) who walks right through four levels:
-
-| Level | Theme | Content |
-|-------|-------|---------|
-| Home | Mountains & clouds | Instructions, name banner |
-| Level 1 | Bangalore cityscape | DOB, personal traits, education, work experience |
-| Level 2 | Hogwarts castle / Chamber | Programming skills, Design skills |
-| Level 3 | Forest | Web scripting & programming |
-| Level 4 | Flying motorcycle | Projects list |
-| Finish | Victory screen | Contact links (Gmail, LinkedIn) |
-
----
+- `index.html`: standalone production bundle, including Three.js, procedural models, resume download, and project screenshot. No runtime dependencies or build step on GitHub Pages.
+- `classic.html`: previous 2D portfolio, using the retained css, js, img, and fonts directories.
+- `CNAME`: custom domain, vinayprabhu.dev.
+- `.nojekyll`: serve the static files directly.
 
 ## Controls
 
-| Input | Action |
-|-------|--------|
-| `→` Right arrow key | Move forward |
-| `←` Left arrow key | Move back |
-| Swipe left | Move forward |
-| Swipe right | Move back |
+Arrow keys / A and D, swipe, or touch arrows to travel. M opens chapters, R opens the resume, E opens a nearby project, W waves at a nearby character, and P opens photo mode. Audio is opt-in. Reduced-motion settings are respected.
 
----
+## Publishing
 
-## Project structure
+GitHub Pages publishes the prod branch root. The editable source is in the local enchanted-resume project: run node build.cjs, then copy the resulting enchanted-resume-3d.html to this repository as index.html. Commit and push to prod.
 
-```
-vinayprabhu19.github.io/
-├── index.html          # Entire page structure — all scenes, levels, elements
-├── css/
-│   └── style.css       # All styling: layout, animations, character sprites, backgrounds
-├── js/
-│   ├── script.js       # Game logic: movement, position tracking, animations
-│   ├── swipe.js        # Touch/swipe event detection for mobile
-│   └── jquery-3.1.1.js # jQuery dependency
-├── fonts/
-│   ├── font1.woff      # Heading font (Harry Potter style)
-│   ├── font2.woff      # Body font
-│   ├── font3.woff      # Accent font
-│   └── font4.woff      # Secondary accent font
-└── img/
-    ├── vinay/          # Character walk cycle: v1.png–v10.png, win-l.png, win-r.png
-    └── *.png / *.jpg   # All backgrounds, characters, UI elements
-```
+## Domain setup
 
----
+In Porkbun DNS, replace parking records for the apex and www with:
 
-## How to run locally
+| Type | Host | Value |
+| --- | --- | --- |
+| A | @ / blank | 185.199.108.153 |
+| A | @ / blank | 185.199.109.153 |
+| A | @ / blank | 185.199.110.153 |
+| A | @ / blank | 185.199.111.153 |
+| CNAME | www | vinayprabhu19.github.io |
 
-No build step needed. Open `index.html` directly in a browser:
+Preserve unrelated email and verification records. Porkbun may show the apex host as blank instead of @.
 
-```bash
-# Option 1 — just open the file
-open index.html
+In repository Settings → Pages, confirm the source is prod / root, the custom domain is vinayprabhu.dev, then enable Enforce HTTPS after DNS verification and certificate issuance.
 
-# Option 2 — serve locally (avoids any file:// quirks)
-python -m http.server 8080
-# then visit http://localhost:8080
-```
-
----
-
-## How to deploy
-
-Push to the `prod` branch. GitHub Pages serves the site automatically from the repo root.
-
----
-
-## Customising content
-
-All visible content lives in `index.html`. Each section is a `<div>` with a descriptive `id`:
-
-- Personal info: `#DOB`, `#SM`, `#PU`, `#QL` inside `#level1-bcontainer`
-- Education: `#college1`, `#college2`, `#aggregate1`, `#aggregate2`
-- Work: `#work1`
-- Skills: `#programming`, `#design`, `#web`
-- Projects: `#android`, `#python`, `#vector-art`, `#web-dev`, `#papers`, `#CSI`
-- Contact links: `#contactGmail`, `#contactLinkedIn` (anchor `href` attributes in `#finish`)
-
-Background images for skill sections are set via CSS on `#programming-container`, `#design-container`, `#web1`, `#web2`.
-
----
-
-## Tech stack
-
-- HTML5 / CSS3 / vanilla JavaScript
-- jQuery 3.1.1 (DOM manipulation, `.animate()`)
-- No framework, no bundler, no package manager
-- GitHub Pages (static hosting)
+Reference: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
